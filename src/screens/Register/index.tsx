@@ -3,12 +3,11 @@ import {useForm} from 'react-hook-form';
 import { 
   Keyboard, 
   Modal, 
-  TouchableWithoutFeedback,
   Alert
 } from 'react-native';
 import * as Yup from 'yup';
 import {yupResolver} from '@hookform/resolvers/yup';
-
+import {TouchableWithoutFeedback} from 'react-native-gesture-handler'
 import { Button } from '../../components/Forms/Button';
 import { CategorySelectButton } from '../../components/Forms/CategorySelectButton';
 import {CategorySelect} from '../CategorySelect'
@@ -23,6 +22,7 @@ import {
   Fields,
   TransactionsTypes
 } from './styles';
+
 interface FormData {
   name: string;
   amount: string;
@@ -45,7 +45,7 @@ export function Register(){
     control,
     handleSubmit,
     formState: {errors}
-  } = useForm({
+  } = useForm<FormData>({
     resolver: yupResolver(schema)
   });
 
@@ -66,7 +66,7 @@ export function Register(){
     setCategoryModalOpen(false);
   }
 
-  function handleRegister(form: FormData){
+  function handleRegister(form: Partial<FormData>){
     if(!transactionType){
       return Alert.alert('Selecione o tipo da transação');
     }
@@ -87,7 +87,11 @@ export function Register(){
 
   return(
     // fecha o teclado em qualquer area
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}> 
+    <TouchableWithoutFeedback 
+      onPress={Keyboard.dismiss}
+      containerStyle={{flex: 1}}
+      style={{flex: 1}}
+    > 
       <Container>
         <Header>
           <Title>Cadastro</Title>
@@ -127,18 +131,19 @@ export function Register(){
                 isActive={transactionType === 'down'}
               />
             </TransactionsTypes>
-
+         
             <CategorySelectButton 
               title={category.name}
               onPress={handleOpenSelectCategoryModal}
             />
+         
           </Fields>
-
+          
           <Button 
-            title="Enviar"
-            //@ts-ignore
+            title="Enviar"            
             onPress={handleSubmit(handleRegister)} 
           />
+          
         </Form>
 
         <Modal visible={categoryModalOpen}>

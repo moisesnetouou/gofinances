@@ -19,7 +19,7 @@ import {
   HighlightCards,
   Transactions,
   Title,
-  TransactionList
+  TransactionList,
 } 
 from './styles';
 
@@ -75,7 +75,7 @@ export function Dashboard(){
               <UserName>Moisés</UserName>
             </User>
           </UserInfo>
-
+    
           <Icon name="power" />
         </UserWrapper>
 
