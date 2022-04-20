@@ -1,6 +1,6 @@
 import React from 'react';
 import {ThemeProvider} from 'styled-components';
-// import {NavigationContainer} from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 import AppLoading from 'expo-app-loading';
 
 import {
@@ -28,10 +28,9 @@ export default function App() {
   return (
     <GestureHandlerRootView style={{flex: 1}}>
       <ThemeProvider theme={theme}>
-        {/* <NavigationContainer>
+        <NavigationContainer>
           <AppRoutes />
-        </NavigationContainer> */}
-        <Register />
+        </NavigationContainer>
       </ThemeProvider>
     </GestureHandlerRootView>
   )

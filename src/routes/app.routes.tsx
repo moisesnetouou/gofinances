@@ -4,7 +4,7 @@ import {MaterialIcons} from '@expo/vector-icons';
 import { useTheme } from 'styled-components';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-const { Navigator, Screen } = createBottomTabNavigator();
+const {Navigator, Screen}  = createBottomTabNavigator();
 
 import {Dashboard} from '../screens/Dashboard';
 import {Register} from '../screens/Register';
@@ -30,6 +30,7 @@ export  function AppRoutes(){
         component={Dashboard}
         options={{
           tabBarIcon: (({size, color}) => 
+          //@ts-ignore
             <MaterialIcons 
               name="format-list-bulleted"
               size={size}
@@ -44,6 +45,7 @@ export  function AppRoutes(){
         component={Register}
         options={{
           tabBarIcon: (({size, color}) => 
+          //@ts-ignore
             <MaterialIcons 
               name="attach-money"
               size={size}
@@ -58,6 +60,7 @@ export  function AppRoutes(){
         component={Register}
         options={{
           tabBarIcon: (({size, color}) => 
+          //@ts-ignore
             <MaterialIcons 
               name="pie-chart"
               size={size}
