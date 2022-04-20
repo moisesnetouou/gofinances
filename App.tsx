@@ -1,6 +1,6 @@
 import React from 'react';
 import {ThemeProvider} from 'styled-components';
-import {NavigationContainer} from '@react-navigation/native'
+// import {NavigationContainer} from '@react-navigation/native';
 import AppLoading from 'expo-app-loading';
 
 import {
@@ -14,7 +14,7 @@ import theme from './src/global/styles/theme';
 
 import {AppRoutes} from './src/routes/app.routes';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-
+import {Register} from './src/screens/Register';
 
 export default function App() {
   const [fonstLoaded] = useFonts({
@@ -28,9 +28,10 @@ export default function App() {
   return (
     <GestureHandlerRootView style={{flex: 1}}>
       <ThemeProvider theme={theme}>
-        <NavigationContainer>
+        {/* <NavigationContainer>
           <AppRoutes />
-        </NavigationContainer>
+        </NavigationContainer> */}
+        <Register />
       </ThemeProvider>
     </GestureHandlerRootView>
   )
