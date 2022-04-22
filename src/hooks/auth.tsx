@@ -8,7 +8,8 @@ import React, {
 const {CLIENT_ID} = process.env;
 const {REDIRECT_URI} = process.env;
 
-import * as AuthSession from 'expo-auth-session';
+import * as Google from 'expo-auth-session';
+import * as AppleAuthentication from 'expo-apple-authentication';
 interface AuthProviderProps {
   children: ReactNode;
 }
@@ -23,6 +24,7 @@ interface User {
 interface IAuthContextData {
   user: User;
   signInWithGoogle: ()=> Promise<void>;
+  // signInWithApple: ()=> Promise<void>;
 }
 
 interface AuthorizationResponse {
@@ -45,7 +47,7 @@ function AuthProvider({children}: AuthProviderProps){
       const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}`;
       // endpoint de autenticação da google
 
-      const {type, params} = await AuthSession
+      const {type, params} = await Google
       .startAsync({authUrl}) as AuthorizationResponse;
      
 
@@ -69,10 +71,39 @@ function AuthProvider({children}: AuthProviderProps){
     }
   }
 
+  // Não funcional
+  // async function signInWithApple(){
+  //   try {
+  //     const credential = await AppleAuthentication.signInAsync({
+  //       requestedScopes: [
+  //         AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
+  //         AppleAuthentication.AppleAuthenticationScope.EMAIL,
+  //       ]
+  //     })
+
+  //     if(credential){
+  //       const userLogged = {
+  //         id: String(credential.user),
+  //         email: credential.email!,
+  //         name: credential.fullName!.givenName!,
+  //         photo: undefined 
+  //       }
+
+  //       setUser(userLogged);
+
+  //       console.log(userLogged)
+  //     }
+  //   } catch (error) {
+  //     //@ts-ignore
+  //     throw new Error(error);
+  //   }
+  // }
+
   return(
     <AuthContext.Provider value={{
       user: user,
-      signInWithGoogle
+      signInWithGoogle,
+      // signInWithApple
     }}>
       {children}
     </AuthContext.Provider>

@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {RFValue} from 'react-native-responsive-fontsize';
 import { Alert } from 'react-native';
 import { SignInSocialButton } from '../../components/SignInSocialButton';
@@ -29,6 +29,19 @@ export function SignIn(){
       Alert.alert('Não foi possível conectar a conta Google.');
     }
   };
+
+  // async function handleSignInWithApple(){
+  //   try {
+  //     await signInWithApple();
+  //   } catch (error) {
+  //     console.log(error);
+  //     Alert.alert('Não foi possível conectar a conta Google.');
+  //   }
+  // };
+
+  function AlertDeveloper(){
+    Alert.alert("Em desenvolvimento");
+  }
 
   return(
     <Container>
@@ -63,6 +76,7 @@ export function SignIn(){
           <SignInSocialButton 
             title="Entrar com Apple"
             svg={AppleSvg}
+            onPress={AlertDeveloper}
           />
         </FooterWrapper>
 
