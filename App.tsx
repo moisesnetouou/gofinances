@@ -2,6 +2,8 @@ import React from 'react';
 import {ThemeProvider} from 'styled-components';
 import {NavigationContainer} from '@react-navigation/native';
 import AppLoading from 'expo-app-loading';
+import 'intl';
+import 'intl/locale-data/jsonp/pt-BR';
 
 import {
   useFonts,
@@ -14,7 +16,8 @@ import theme from './src/global/styles/theme';
 
 import {AppRoutes} from './src/routes/app.routes';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import {Register} from './src/screens/Register';
+
+import { StatusBar } from 'react-native';
 
 export default function App() {
   const [fonstLoaded] = useFonts({
@@ -28,6 +31,7 @@ export default function App() {
   return (
     <GestureHandlerRootView style={{flex: 1}}>
       <ThemeProvider theme={theme}>
+        <StatusBar barStyle="light-content" backgroundColor="#5636D3" />
         <NavigationContainer>
           <AppRoutes />
         </NavigationContainer>
