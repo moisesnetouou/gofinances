@@ -20,14 +20,15 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { StatusBar } from 'react-native';
 import { SignIn } from './src/screens/SignIn';
 
-import {AuthProvider} from './src/hooks/auth';
+import {AuthProvider, useAuth} from './src/hooks/auth';
 
 export default function App() {
   const [fonstLoaded] = useFonts({
     Poppins_400Regular, Poppins_500Medium, Poppins_700Bold
   });
+  const {userStorageLoading} = useAuth();
 
-  if(!fonstLoaded){
+  if(!fonstLoaded || userStorageLoading){
     return <AppLoading />
   }
 
