@@ -20,6 +20,8 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { StatusBar } from 'react-native';
 import { SignIn } from './src/screens/SignIn';
 
+import {AuthProvider} from './src/hooks/auth';
+
 export default function App() {
   const [fonstLoaded] = useFonts({
     Poppins_400Regular, Poppins_500Medium, Poppins_700Bold
@@ -35,7 +37,9 @@ export default function App() {
         <StatusBar barStyle="light-content" backgroundColor="#5636D3" />
         <NavigationContainer>
           {/* <AppRoutes /> */}
-          <SignIn />
+          <AuthProvider >
+            <SignIn />
+          </AuthProvider>
         </NavigationContainer>
       </ThemeProvider>
     </GestureHandlerRootView>
