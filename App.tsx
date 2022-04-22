@@ -14,10 +14,11 @@ import {
 
 import theme from './src/global/styles/theme';
 
-import {AppRoutes} from './src/routes/app.routes';
+// import {AppRoutes} from './src/routes/app.routes';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import { StatusBar } from 'react-native';
+import { SignIn } from './src/screens/SignIn';
 
 export default function App() {
   const [fonstLoaded] = useFonts({
@@ -33,7 +34,8 @@ export default function App() {
       <ThemeProvider theme={theme}>
         <StatusBar barStyle="light-content" backgroundColor="#5636D3" />
         <NavigationContainer>
-          <AppRoutes />
+          {/* <AppRoutes /> */}
+          <SignIn />
         </NavigationContainer>
       </ThemeProvider>
     </GestureHandlerRootView>
